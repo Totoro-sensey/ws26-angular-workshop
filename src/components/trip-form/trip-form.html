@@ -1,0 +1,19 @@
+<form novalidate (submit)="onSubmit($event)">
+<label for="tripForm-name">Name</label>
+<input id="tripForm-name" type="text" [formField]="tripForm.name" />
+@if(tripForm.name().invalid()) {
+    @for (error of tripForm.name().errors(); track error.kind) {
+      <span>{{ error.message }}</span>
+    }
+}
+
+<label for="tripForm-description">Description</label>
+<input id="tripForm-description" type="text" [formField]="tripForm.description" />
+
+<label for="tripForm-date">Date</label>
+<input id="tripForm-date" type="text" [formField]="tripForm.date" />
+<button type="submit">Submit</button>
+</form>
+
+
+<p>Your trip begins in {{ tripStart() }}!</p>

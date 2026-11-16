@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { TripListItem } from '../trip-list-item/trip-list-item';
 
 export interface Trip {
@@ -12,7 +11,7 @@ export interface Trip {
     selector: 'app-trip-list',
     templateUrl: './trip-list.html',
     styleUrl: './trip-list.css',
-    imports: [RouterLink, TripListItem],
+    imports: [TripListItem],
 })
 export class TripList implements OnInit {
     trips: Trip[] = [

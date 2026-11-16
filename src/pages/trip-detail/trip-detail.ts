@@ -13,7 +13,7 @@ export class TripDetailPage implements OnInit {
     private activatedRoute = inject(ActivatedRoute);
     ngOnInit() {
         this.activatedRoute.params.subscribe((params) => {
-            this.tripId = Number(params['id']);
+            this.tripId = Number(params['id'] ?? -1);
         })
     }
 }
