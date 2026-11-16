@@ -1,11 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TripListItem } from '../trip-list-item/trip-list-item';
-
-export interface Trip {
-    name: string;
-    description: string;
-    date: string;
-}
+import { Trip, TripService } from '../../services/trip-service';
 
 @Component({
     selector: 'app-trip-list',
@@ -14,29 +9,13 @@ export interface Trip {
     imports: [TripListItem],
 })
 export class TripList implements OnInit {
-    trips: Trip[] = [
-        {
-            name: 'Slovenia',
-            description: 'Lake Bled',
-            date: '2026-10-01',
-        },
-        {
-            name: 'Italy',
-            description: 'Trip to Lignano',
-            date: '2026-11-20',
-        },
-        {
-            name: 'Germany',
-            description: 'Trip to Munich',
-            date: '2026-12-22',
-        }
-    ];
-
+    trips: Trip[] = [];
+    tripService = inject(TripService);
     now: string;
 
     constructor() {
         this.now = '2026-11-16';
-        console.log('constructor', this.now);
+        this.trips = this.tripService.getTrips();
     }
 
     ngOnInit() {

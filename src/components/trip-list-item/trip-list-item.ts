@@ -1,20 +1,21 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output, signal, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Trip } from '../trip-list/trip-list';
+import { DatePipe } from '@angular/common';
+import { Trip } from '../../services/trip-service';
 
 @Component({
     selector: 'app-trip-list-item',
     templateUrl: './trip-list-item.html',
     styleUrl: './trip-list-item.css',
-    imports: [RouterLink],
+    imports: [RouterLink, DatePipe],
 })
 export class TripListItem {
     trip = input.required<Trip>();
-    index = input.required<number>();
     onShowDate = output();
+    isTripInPast: Signal<boolean> = computed(() => this.trip().date < new Date().toISOString())
 
-    getTripLink(index: number): string {
-        return `/trip-detail/${index}`;
+    getTripLink(): string {
+        return `/trip-detail/${this.trip().id}`;
     }
 
     showDate(trip: Trip): void {

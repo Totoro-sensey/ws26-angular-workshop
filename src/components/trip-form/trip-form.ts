@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { form, FormField, required } from '@angular/forms/signals';
-import { Trip } from '../trip-list/trip-list';
+import { Trip } from '../../services/trip-service';
 
 @Component({
     selector: 'app-trip-form',
@@ -9,7 +9,7 @@ import { Trip } from '../trip-list/trip-list';
     imports: [FormField],
 })
 export class TripForm {
-    tripModel = signal<Trip>({
+    tripModel = signal<Omit<Trip, 'id'>>({
         name: '',
         description: '',
         date: '',
