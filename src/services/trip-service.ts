@@ -14,19 +14,19 @@ export class TripService {
   private trips = signal<Trip[]>([
     {
       id: 1,
-      name: 'Slovenia',
+      name: 'Ljubljana',
       description: 'Lake Bled',
       date: '2026-10-01',
     },
     {
       id: 2,
-      name: 'Italy',
+      name: 'Rome',
       description: 'Trip to Lignano',
       date: '2026-11-20',
     },
     {
       id: 3,
-      name: 'Germany',
+      name: 'Berlin',
       description: 'Trip to Munich',
       date: '2026-12-22',
     }
