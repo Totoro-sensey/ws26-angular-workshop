@@ -1,0 +1,8 @@
+<h2>Trip List</h2>
+<ul>
+    @for (trip of trips; track trip.name) {
+        <li [hidden]="trip.date < now">{{ trip.name }} | {{ trip.date }} | {{ trip.description }}</li>
+    } @empty {
+        <li>There are no trips.</li>
+    }
+</ul>
