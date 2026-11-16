@@ -1,7 +1,6 @@
-<li>
+<li [class.red]="isTripInPast()">
     <a [routerLink]="getTripLink()">{{ trip().name }}</a> 
     | {{ trip().description }}
     | {{ trip().date | date }}
-    | Past? {{ isTripInPast() }}
     <button (click)="showDate(trip())">Tell me the date</button>
 </li>

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Trip, TripService } from '../../services/trip-service';
 import { GpsLocation, WeatherServiceTs } from '../../services/weather-service.ts';
@@ -13,14 +13,14 @@ export class TripDetailPage implements OnInit {
     tripService = inject(TripService);
     weatherService = inject(WeatherServiceTs);
     private activatedRoute = inject(ActivatedRoute);
-    trip: Trip = { id: -1, name: '', description: '', date: '' };
+    trip: WritableSignal<Trip | undefined> = signal(undefined);
     gps: WritableSignal<GpsLocation | undefined> = signal(undefined);
     tripId = -1;
 
     ngOnInit() {
         this.activatedRoute.params.subscribe((params) => {
             this.tripId = Number(params['id'] ?? -1);
-            this.trip = this.tripService.getTrip(this.tripId) ?? this.trip;
+            this.trip.set(this.tripService.getTrip(this.tripId));
             this.weatherService.getGpsCoordinates(this.trip.name)
                 .subscribe((nextLocation) => {
                     this.gps.set(nextLocation.results[0]);
