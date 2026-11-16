@@ -1,13 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { TripList } from '../components/trip-list/trip-list';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [TripList],
+  imports: [RouterOutlet],
 })
-export class App {
-  protected readonly title = 'Angular Workshop';
-  protected readonly signalTitle = signal('Welcome');
-}
+export class App { }

@@ -1,7 +1,9 @@
 <h2>Trip List</h2>
 <ul>
-    @for (trip of trips; track trip.name) {
-        <li [hidden]="trip.date < now">{{ trip.name }} | {{ trip.date }} | {{ trip.description }}</li>
+    @for (trip of trips; let index = $index; track trip.name) {
+        @if(trip.date < now) {
+          <app-trip-list-item [trip]="trip" [index]="index" (onShowDate)="onShowDate()" />
+        }
     } @empty {
         <li>There are no trips.</li>
     }

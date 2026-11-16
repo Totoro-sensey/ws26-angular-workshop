@@ -1,0 +1,5 @@
+<li>
+    <a [routerLink]="getTripLink(index())">{{ trip().name }}</a> 
+    | {{ trip().description }} | 
+    <button (click)="showDate(trip())">Tell me the date</button>
+</li>

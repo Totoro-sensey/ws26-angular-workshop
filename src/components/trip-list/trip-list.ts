@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TripListItem } from '../trip-list-item/trip-list-item';
 
-interface Trip {
+export interface Trip {
     name: string;
     description: string;
     date: string;
@@ -10,7 +12,7 @@ interface Trip {
     selector: 'app-trip-list',
     templateUrl: './trip-list.html',
     styleUrl: './trip-list.css',
-    imports: [],
+    imports: [RouterLink, TripListItem],
 })
 export class TripList implements OnInit {
     trips: Trip[] = [
@@ -41,5 +43,9 @@ export class TripList implements OnInit {
     ngOnInit() {
         this.now = (new Date()).toISOString();
         console.log('on init', this.now);
+    }
+
+    onShowDate() {
+        console.log('event was fired from child');
     }
 }
